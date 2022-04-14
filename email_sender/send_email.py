@@ -29,7 +29,12 @@ def send_email(ch, method, properties, body):
     server.starttls()
     server.login(FROM_EMAIL, PASSWORD)
 
-    server.sendmail(FROM_EMAIL, to_email, msg.as_string())
+    try:
+        server.sendmail(FROM_EMAIL, to_email, msg.as_string())
+    except Exception as e:
+        print(f"Can't send email to {to_email}")
+        print(e)
+
     server.quit()
 
     # mark message as processed
