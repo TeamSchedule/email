@@ -23,6 +23,7 @@ services:
         depends_on:
             - rabbitmq
         environment:
+            - RABBIT_QUEUE=mail_processed
             - RABBITMQ_USER=user
             - RABBITMQ_PASS=password
             - RABBITMQ_HOST=rabbitmq
