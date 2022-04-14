@@ -10,3 +10,4 @@ COPY ./poetry.lock          /email_sender/
 
 RUN poetry install
 COPY ./email_sender /email_sender/email_sender
+ENTRYPOINT poetry run python main.py
