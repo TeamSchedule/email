@@ -1,0 +1,31 @@
+version: '3.3'
+
+
+services:
+    rabbitmq:
+        image: rabbitmq:3.8-management-alpine
+        container_name: "rabbitmq"
+        volumes:
+            - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+            - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        environment:
+            - RABBITMQ_DEFAULT_USER=user
+            - RABBITMQ_DEFAULT_PASS=password
+        ports:
+            - "5672:5672"
+
+
+    email_sender:
+        build:
+            context: ./
+            dockerfile: ./Dockerfile
+        entrypoint: poetry run python main.py
+        depends_on:
+            - rabbitmq
+        environment:
+            - RABBITMQ_USER=user
+            - RABBITMQ_PASS=password
+            - RABBITMQ_HOST=rabbitmq
+            - RABBITMQ_PORT=5672
+            - FROM_EMAIL=
+            - FROM_EMAIL_PASSWORD=

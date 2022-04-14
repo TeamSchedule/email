@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "smtp_sender"
+version = "0.1.0"
+description = ""
+authors = ["Sergey Rubnikovich <https://github.com/Sergey-x>"]
+
+[tool.poetry.dependencies]
+python = "3.8.10"
+pika = "1.2.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
